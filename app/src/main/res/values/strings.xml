@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Travelmantics</string>
+    <string name="description">Description</string>
+    <string name="price">Price</string>
+    <string name="title">Title</string>
+    <string name="title_activity_auth">AuthActivity</string>
+    <string name="path_database_travel_deals">travel_deals</string>
+    <string name="save_menu">save</string>
+    <string name="delete_deal">Delete Deal</string>
+    <string name="logout">Logout</string>
+    <string name="new_travel_deal">New Travel Deal</string>
+    <string name="title_hint">Title</string>
+    <string name="price_hint">Price</string>
+    <string name="description_hint">Description</string>
+    <string name="upload_image">Upload Image</string>
+    <string name="upload_image_failed">Image upload failed</string>
+    <string name="retry">Rety</string>
+    <string name="error_title_required">Title Required</string>
+    <string name="error_description_required">Description Required</string>
+    <string name="error_price_0">Price Can Not Be 0</string>
+    <string name="error_price_required">Price Required</string>
+</resources>
