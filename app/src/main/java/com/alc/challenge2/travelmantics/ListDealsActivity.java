@@ -2,6 +2,10 @@ package com.alc.challenge2.travelmantics;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,14 +22,31 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListDealsActivity extends AppCompatActivity {
+
+    private ListDealsViewModel viewModel;
+    private TravelDealsRecyclerViewAdapter travelDealsRecyclerViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_deals);
 
+        viewModel = ViewModelProviders.of(this).get(ListDealsViewModel.class);
+
+        RecyclerView rvTravelDeals = findViewById(R.id.rv_traveldeals);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        rvTravelDeals.setLayoutManager(linearLayoutManager);
+
+        viewModel.getTravelDealModelLiveData().observe(this, travelDealModels -> {
+            if(!travelDealModels.isEmpty()){
+                travelDealsRecyclerViewAdapter = new TravelDealsRecyclerViewAdapter(travelDealModels);
+                rvTravelDeals.setAdapter(travelDealsRecyclerViewAdapter);
+            }
+        });
     }
 
     @Override
@@ -76,12 +97,12 @@ public class ListDealsActivity extends AppCompatActivity {
         super.onResume();
         FirebaseUtil.openFbReference(getString(R.string.path_database_travel_deals), this);
 
-        RecyclerView rvTravelDeals = findViewById(R.id.rv_traveldeals);
-        final TravelDealsRecyclerViewAdapter travelDealsRecyclerViewAdapter = new TravelDealsRecyclerViewAdapter();
-
-        rvTravelDeals.setAdapter(travelDealsRecyclerViewAdapter);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-        rvTravelDeals.setLayoutManager(linearLayoutManager);
+//        RecyclerView rvTravelDeals = findViewById(R.id.rv_traveldeals);
+//        final TravelDealsRecyclerViewAdapter travelDealsRecyclerViewAdapter = new TravelDealsRecyclerViewAdapter();
+//
+//        rvTravelDeals.setAdapter(travelDealsRecyclerViewAdapter);
+//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+//        rvTravelDeals.setLayoutManager(linearLayoutManager);
         FirebaseUtil.attachListener();
     }
 

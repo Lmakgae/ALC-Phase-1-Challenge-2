@@ -1,5 +1,6 @@
 package com.alc.challenge2.travelmantics;
 
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -86,6 +87,7 @@ public class FirebaseUtil {
     }
 
     private static void checkAdmin(String uid) {
+        Log.d("FirebaseUtil", "checkAdmin: checking if user is admin");
         FirebaseUtil.isAdmin=false;
         DatabaseReference ref = mFirebaseDatabase.getReference().child("administrators")
                 .child(uid);

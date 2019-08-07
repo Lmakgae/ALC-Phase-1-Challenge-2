@@ -32,42 +32,45 @@ public class TravelDealsRecyclerViewAdapter extends RecyclerView.Adapter<TravelD
     private DatabaseReference mDatabaseReference;
     private ChildEventListener mChildListener;
 
-    public TravelDealsRecyclerViewAdapter() {
+    public TravelDealsRecyclerViewAdapter(List<TravelDealModel> list) {
+
+        this.mTravelDealsList = list;
+
         //FirebaseUtil.openFbReference("traveldeals");
-        mFirebaseDatabase = FirebaseUtil.mFirebaseDatabase;
-        mDatabaseReference = FirebaseUtil.mDatabaseReference;
-        this.mTravelDealsList = FirebaseUtil.mDeals;
-        mChildListener = new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                TravelDealModel td = dataSnapshot.getValue(TravelDealModel.class);
-                Log.d("Deal: ", td.getTitle());
-                td.setId(dataSnapshot.getKey());
-                mTravelDealsList.add(td);
-                notifyItemInserted(mTravelDealsList.size()-1);
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        };
-        mDatabaseReference.addChildEventListener(mChildListener);
+//        mFirebaseDatabase = FirebaseUtil.mFirebaseDatabase;
+//        mDatabaseReference = FirebaseUtil.mDatabaseReference;
+//        this.mTravelDealsList = FirebaseUtil.mDeals;
+//        mChildListener = new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//                TravelDealModel td = dataSnapshot.getValue(TravelDealModel.class);
+//                Log.d("Deal: ", td.getTitle());
+//                td.setId(dataSnapshot.getKey());
+//                mTravelDealsList.add(td);
+//                notifyItemInserted(mTravelDealsList.size()-1);
+//            }
+//
+//            @Override
+//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//
+//            }
+//
+//            @Override
+//            public void onChildRemoved(DataSnapshot dataSnapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        };
+//        mDatabaseReference.addChildEventListener(mChildListener);
     }
 
     @NonNull
